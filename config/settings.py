@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'materials',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

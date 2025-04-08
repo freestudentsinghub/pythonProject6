@@ -62,6 +62,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           cd ${{ secrets.DEPLOY_DIR }}
           source venv/bin/activate
+          export SECRET_KEY=${{ secrets.SECRET_KEY }}
           python manage.py migrate
         EOF
 
@@ -70,6 +71,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           cd ${{ secrets.DEPLOY_DIR }}
           source venv/bin/activate
+          export SECRET_KEY=${{ secrets.SECRET_KEY }}
           python manage.py collectstatic --noinput
         EOF
 
@@ -78,4 +80,3 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           sudo systemctl restart myapp.service
         EOF
-        
